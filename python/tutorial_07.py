@@ -9,7 +9,7 @@ methods = [cv.TM_CCOEFF, cv.TM_CCOEFF_NORMED, cv.TM_CCORR, \
         cv.TM_CCORR_NORMED, cv.TM_SQDIFF, cv.TM_SQDIFF_NORMED]
 
 for idx, method in enumerate(methods):
-    img = image.copy()
+    img = image.copy()  # copy image for each method to avoid overwriting
     result = cv.matchTemplate(img, templ=template, method=method)
     min_val, max_val, min_loc, max_loc = cv.minMaxLoc(result)
     # print(min_val, max_val, min_loc, max_loc)
@@ -26,4 +26,3 @@ for idx, method in enumerate(methods):
     cv.imshow(winname=f'method {idx}', mat=img)
     cv.waitKey(delay=0)
     cv.destroyAllWindows()
-
